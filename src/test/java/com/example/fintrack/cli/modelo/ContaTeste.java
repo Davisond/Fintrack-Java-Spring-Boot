@@ -1,4 +1,4 @@
-package com.example.fintrack.cli;
+package com.example.fintrack.cli.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -7,10 +7,6 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
-
-import com.example.fintrack.cli.modelo.Conta;
-import com.example.fintrack.cli.modelo.Lancamento;
-import com.example.fintrack.cli.modelo.TipoLancamento;
 
 public class ContaTeste {
 
@@ -25,7 +21,7 @@ public class ContaTeste {
 
 
     @Test
-    void valorZeroEhRejeitado() {
+void valorZeroEhRejeitado() {
         assertThrows(IllegalArgumentException.class, () ->
                 new Lancamento(UUID.randomUUID(), "Teste", BigDecimal.ZERO,
                         LocalDate.now(), TipoLancamento.RECEITA));
