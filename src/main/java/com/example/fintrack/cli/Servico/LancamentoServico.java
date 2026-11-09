@@ -61,5 +61,13 @@ public class LancamentoServico {
             .toList();
     }
 
+    public void remover(UUID id){
+        if(!repositorio.remover(id)){
+            throw new LancamentoNaoEncontradoException(id);
+        }
+
+    }
+
+
 
 }

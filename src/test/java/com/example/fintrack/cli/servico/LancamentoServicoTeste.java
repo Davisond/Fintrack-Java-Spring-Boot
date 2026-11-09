@@ -110,4 +110,31 @@ public class LancamentoServicoTeste {
         assertEquals(1, servico.maisRecentes(5).size());
         }
 
+        @Test
+        void removeLancamentoExistente() {
+        Lancamento l = servico.salvar(new Lancamento(UUID.randomUUID(), "Mercado",
+                new BigDecimal("100.00"), LocalDate.of(2026, 10, 3), TipoLancamento.DESPESA));
+
+        servico.remover(l.id());
+
+        assertThrows(LancamentoNaoEncontradoException.class, () -> servico.buscar(l.id()));
+        }
+
+        @Test
+        void removerInexistenteLancaExcecao() {
+        assertThrows(LancamentoNaoEncontradoException.class,
+                () -> servico.remover(UUID.randomUUID()));
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 }
