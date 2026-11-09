@@ -1,9 +1,17 @@
 package com.example.fintrack.cli.Servico;
 
+import java.math.BigDecimal;
+import java.time.YearMonth;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.example.fintrack.cli.modelo.Lancamento;
 import com.example.fintrack.cli.modelo.LancamentoNaoEncontradoException;
+import com.example.fintrack.cli.modelo.TipoLancamento;
 import com.example.fintrack.cli.repositorio.RepositorioLancamentos;
 
 public class LancamentoServico {
@@ -17,6 +25,40 @@ public class LancamentoServico {
     public Lancamento buscar(UUID id){
         return repositorio.buscarPorId(id)
             .orElseThrow(() -> new LancamentoNaoEncontradoException(id));
+    }
+
+    public Lancamento salvar(Lancamento lancamento){
+        return repositorio.salvar(lancamento);
+    }
+
+    public List<Lancamento> listar() {
+        return repositorio.listar();
+    }
+
+    public BigDecimal totalDespesasDoMes(YearMonth mes){
+        return repositorio.listar().stream()
+                .filter(l -> l.tipo() == TipoLancamento.DESPESA)
+                .filter(l -> YearMonth.from(l.data()).equals(mes))
+                .map(Lancamento::valor)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public Optional<Lancamento> maiorDespesa() {
+        return repositorio.listar().stream()
+                .filter(l -> l.tipo() == TipoLancamento.DESPESA)
+                .max(Comparator.comparing(Lancamento::valor));
+    }
+
+    public  Map<TipoLancamento, List<Lancamento>> agruparPorTipo(){
+        return repositorio.listar().stream()
+            .collect(Collectors.groupingBy(Lancamento::tipo));
+    }
+
+    public List<Lancamento> maisRecentes(int quantidade){
+        return repositorio.listar().stream()
+            .sorted(Comparator.comparing(Lancamento::data).reversed())
+            .limit(quantidade)
+            .toList();
     }
 
 
