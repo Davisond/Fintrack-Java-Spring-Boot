@@ -24,4 +24,9 @@ O BigDecimal guarda em decimal, a precisão fica correta, a unica desvantagem é
 Checked: extend excepton, o compilador obriga quem chama o método a tratar com try/catch ou declarar throws
 Unchecked: extends RuntimeException, A exceção sobe na pilha até ser tratada, é o caso de LancamentoNaoEncontradoException
 
+### Genéricos : Resultado<T>
+`Resultado<T>` guarda um valor ou uma lista de erros, de modo que, a validação devolta todos os erros juntos, sem lançar exceção, e o compilador confere o tipo do valor.
 
+### equals, hashCode e toString
+Um record gera equals, hashCode e toString comparando todos os campos, em uma classe normal sem estes métodos o java comppara pela referência (==), mas dois objetos com mesmo conteúdo não são iguais.
+Se dois objetos são iguais precisam ter o mesmo hashCode, se não o HashMap e HashSet dá problema. Prova: IgualdadeTeste.
