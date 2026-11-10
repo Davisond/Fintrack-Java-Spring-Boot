@@ -1,4 +1,4 @@
-package com.example.fintrack.cli.Servico;
+package com.example.fintrack.Servico;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;
@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.example.fintrack.cli.modelo.Lancamento;
-import com.example.fintrack.cli.modelo.LancamentoNaoEncontradoException;
-import com.example.fintrack.cli.modelo.TipoLancamento;
-import com.example.fintrack.cli.repositorio.RepositorioLancamentos;
+import com.example.fintrack.modelo.Lancamento;
+import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
+import com.example.fintrack.modelo.TipoLancamento;
+import com.example.fintrack.repositorio.RepositorioLancamentos;
 
 public class LancamentoServico {
 

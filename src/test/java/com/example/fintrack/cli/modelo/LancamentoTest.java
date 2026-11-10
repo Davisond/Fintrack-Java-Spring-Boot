@@ -12,6 +12,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.example.fintrack.modelo.Lancamento;
+import com.example.fintrack.modelo.Resultado;
+import com.example.fintrack.modelo.TipoLancamento;
+
 public class LancamentoTest {
 
      @Test

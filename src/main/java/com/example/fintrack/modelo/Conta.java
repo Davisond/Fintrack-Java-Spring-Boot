@@ -1,4 +1,4 @@
-package com.example.fintrack.cli.modelo;
+package com.example.fintrack.modelo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

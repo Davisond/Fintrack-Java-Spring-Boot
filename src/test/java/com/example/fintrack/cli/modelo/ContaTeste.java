@@ -8,6 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
+import com.example.fintrack.modelo.Conta;
+import com.example.fintrack.modelo.Lancamento;
+import com.example.fintrack.modelo.TipoLancamento;
+
 public class ContaTeste {
 
     @Test 

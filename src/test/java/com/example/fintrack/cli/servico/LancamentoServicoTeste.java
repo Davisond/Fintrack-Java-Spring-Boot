@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import com.example.fintrack.cli.Servico.LancamentoServico;
-import com.example.fintrack.cli.modelo.Lancamento;
-import com.example.fintrack.cli.modelo.LancamentoNaoEncontradoException;
-import com.example.fintrack.cli.modelo.TipoLancamento;
-import com.example.fintrack.cli.repositorio.RepositorioEmMemoria;
-import com.example.fintrack.cli.repositorio.RepositorioLancamentos;
+import com.example.fintrack.Servico.LancamentoServico;
+import com.example.fintrack.modelo.Lancamento;
+import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
+import com.example.fintrack.modelo.TipoLancamento;
+import com.example.fintrack.repositorio.RepositorioEmMemoria;
+import com.example.fintrack.repositorio.RepositorioLancamentos;
 
   
 public class LancamentoServicoTeste {

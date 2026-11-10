@@ -1,10 +1,10 @@
-package com.example.fintrack.cli.repositorio;
+package com.example.fintrack.repositorio;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.example.fintrack.cli.modelo.Lancamento;
+import com.example.fintrack.modelo.Lancamento;
 
 public interface RepositorioLancamentos {
 

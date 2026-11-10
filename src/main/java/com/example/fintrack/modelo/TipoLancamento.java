@@ -1,4 +1,4 @@
-package com.example.fintrack.cli.modelo;
+package com.example.fintrack.modelo;
 
 public enum TipoLancamento {
     RECEITA,

@@ -30,3 +30,11 @@ Unchecked: extends RuntimeException, A exceção sobe na pilha até ser tratada,
 ### equals, hashCode e toString
 Um record gera equals, hashCode e toString comparando todos os campos, em uma classe normal sem estes métodos o java comppara pela referência (==), mas dois objetos com mesmo conteúdo não são iguais.
 Se dois objetos são iguais precisam ter o mesmo hashCode, se não o HashMap e HashSet dá problema. Prova: IgualdadeTeste.
+
+### Como rodar o Cli
+Pelo terminal:
+
+    ./mvnw -q compile
+    java -cp target/classes com.example.fintrack.cli.app.Cli
+
+Comandos: `add`, `list`, `remove <id>`, `resumo`, `sair`.

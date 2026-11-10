@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+import com.example.fintrack.modelo.Lancamento;
+import com.example.fintrack.modelo.TipoLancamento;
+
 public class IgualdadeTeste {
 
         private static final UUID ID = UUID.fromString("00000000-0000-0000-0000-000000000001");
