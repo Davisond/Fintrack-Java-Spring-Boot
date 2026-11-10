@@ -38,3 +38,9 @@ Pelo terminal:
     java -cp target/classes com.example.fintrack.cli.app.Cli
 
 Comandos: `add`, `list`, `remove <id>`, `resumo`, `sair`.
+
+## Etapa 2: API Rest em memória
+
+### Por que injeção por constructor
+Os campos ficam com final, o objeto nunca existe sem todas as dependencias,
+pode ser testado com new com um repositório em memória, as dependencias ficam explicitas na assinatura do constructor 

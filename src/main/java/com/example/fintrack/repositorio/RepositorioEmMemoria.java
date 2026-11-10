@@ -6,9 +6,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.fintrack.modelo.Lancamento;
 
-
+@Repository 
 public class RepositorioEmMemoria implements RepositorioLancamentos{
     
     private final Map<UUID, Lancamento> dados = new HashMap<>();

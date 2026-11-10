@@ -9,11 +9,14 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.example.fintrack.modelo.Lancamento;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
 import com.example.fintrack.modelo.TipoLancamento;
 import com.example.fintrack.repositorio.RepositorioLancamentos;
 
+@Service
 public class LancamentoServico {
 
     private final RepositorioLancamentos repositorio;
