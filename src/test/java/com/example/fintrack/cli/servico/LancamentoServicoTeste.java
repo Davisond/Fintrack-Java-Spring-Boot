@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
@@ -126,7 +127,39 @@ public class LancamentoServicoTeste {
                 () -> servico.remover(UUID.randomUUID()));
         }
 
+    @Test
+    void criarGeraNovoIdIgnorandoOQueVeio() {
+        UUID idDoCliente = UUID.randomUUID();
+        Lancamento dados = new Lancamento(idDoCliente, "Mercado",
+                new BigDecimal("100.00"), LocalDate.of(2026, 10, 3), TipoLancamento.DESPESA);
 
+        Lancamento criado = servico.criar(dados);
+
+        assertNotEquals(idDoCliente, criado.id());
+        assertEquals(criado, servico.buscar(criado.id()));
+    }
+
+    @Test
+    void atualizarMantemOIdETrocaOsDados() {
+        Lancamento original = servico.salvar(new Lancamento(UUID.randomUUID(), "Mercado",
+                new BigDecimal("100.00"), LocalDate.of(2026, 10, 3), TipoLancamento.DESPESA));
+        Lancamento novosDados = new Lancamento(UUID.randomUUID(), "Farmácia",
+                new BigDecimal("45.00"), LocalDate.of(2026, 10, 4), TipoLancamento.DESPESA);
+
+        Lancamento atualizado = servico.atualizar(original.id(), novosDados);
+
+        assertEquals(original.id(), atualizado.id());
+        assertEquals("Farmácia", servico.buscar(original.id()).descricao());
+    }
+
+    @Test
+    void atualizarInexistenteLancaExcecao() {
+        Lancamento dados = new Lancamento(UUID.randomUUID(), "Teste",
+                new BigDecimal("10.00"), LocalDate.of(2026, 10, 1), TipoLancamento.DESPESA);
+
+        assertThrows(LancamentoNaoEncontradoException.class,
+                () -> servico.atualizar(UUID.randomUUID(), dados));
+    }
 
 
 

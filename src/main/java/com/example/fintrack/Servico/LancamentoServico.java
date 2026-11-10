@@ -34,6 +34,17 @@ public class LancamentoServico {
         return repositorio.salvar(lancamento);
     }
 
+    public Lancamento criar(Lancamento dados){
+        Lancamento novo = new Lancamento(UUID.randomUUID(),dados.descricao(), dados.valor(), dados.data(), dados.tipo());
+        return repositorio.salvar(novo);
+    }
+
+    public Lancamento atualizar(UUID id, Lancamento dados){
+        buscar(id);
+        Lancamento atualizado = new Lancamento(id, dados.descricao(), dados.valor(), dados.data(), dados.tipo());
+        return repositorio.salvar(atualizado);
+    }
+
     public List<Lancamento> listar() {
         return repositorio.listar();
     }
