@@ -44,3 +44,8 @@ Comandos: `add`, `list`, `remove <id>`, `resumo`, `sair`.
 ### Por que injeção por constructor
 Os campos ficam com final, o objeto nunca existe sem todas as dependencias,
 pode ser testado com new com um repositório em memória, as dependencias ficam explicitas na assinatura do constructor 
+
+### O que é o bean e o escopo singleton
+Um bean é um objeto criado e gerenciado pelo container do Spring através da notação @Component, @Service, @Repository, @RestController.
+O spring cria instancias na própria inicialização e entrega os construtores, sem o Spring teria que ser criado manualmente. 
+singleton é o escopo padrão: Existe uma unica instanca de cada bean por aplicação, compartilhada por todas as requisições. por isso beans não devem guardar estado mutável específico por usuário. o @PostConstructor roda uma vez após a criação do bean e injeção de dependências.
