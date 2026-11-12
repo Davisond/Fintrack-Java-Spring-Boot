@@ -1,0 +1,46 @@
+@host = http://localhost:8081
+
+### Listar todos (200)
+GET {{host}}/api/lancamentos
+
+### Buscar por id (troque pelo id de um item da lista)
+GET {{host}}/api/lancamentos/COLE-UM-ID-AQUI
+
+### Buscar id inexistente (404)
+GET {{host}}/api/lancamentos/00000000-0000-0000-0000-000000000000
+
+### Criar (201 + header Location)
+POST {{host}}/api/lancamentos
+Content-Type: application/json
+
+{
+  "descricao": "Mercado",
+  "valor": 150.90,
+  "data": "2026-10-01",
+  "tipo": "DESPESA"
+}
+
+### Criar inválido, valor zero (400)
+POST {{host}}/api/lancamentos
+Content-Type: application/json
+
+{
+  "descricao": "Teste",
+  "valor": 0,
+  "data": "2026-10-01",
+  "tipo": "DESPESA"
+}
+
+### Substituir (troque pelo id)
+PUT {{host}}/api/lancamentos/COLE-UM-ID-AQUI
+Content-Type: application/json
+
+{
+  "descricao": "Mercado do mês",
+  "valor": 320.00,
+  "data": "2026-10-02",
+  "tipo": "DESPESA"
+}
+
+### Remover (204)
+DELETE {{host}}/api/lancamentos/COLE-UM-ID-AQUI
