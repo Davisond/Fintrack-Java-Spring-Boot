@@ -4,7 +4,10 @@ API de finanças pessoais em Java 21 + Spring Boot 3.
 
 ## Etapa 0: setup
 
-**Como rodar:** `./mvnw spring-boot:run` (sobe na porta 8080).
+**Como rodar:** `./mvnw spring-boot:run` 
+ - A api sobe na porta 8081 com 3 exemplos (local da config: application.yml)
+ - As chamadas possíveis estão em requests.http (Os UUIDs são gerados sempre que a aplicação reinicia, então o primeiro passo é um GET da lista e copiar um id)
+ Endpoints: GET/POST `/api/lancamentos`, GET/PUT/DELETE `/api/lancamentos/{id}`
 
 **O que aprendi sobre o pom.xml:**
 - `parent`: herda do Spring Boot as versões e configurações padrão, então não preciso declarar a versão de cada biblioteca.
