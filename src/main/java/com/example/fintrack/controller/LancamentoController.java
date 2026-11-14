@@ -17,34 +17,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.fintrack.Servico.LancamentoServico;
-import com.example.fintrack.modelo.Lancamento;
+import com.example.fintrack.dto.LancamentoRequest;
+import com.example.fintrack.dto.LancamentoResponse;
+import com.example.fintrack.mapper.LancamentoMapper;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
-
 
 @RestController
 @RequestMapping("/api/lancamentos")
-
 public class LancamentoController {
 
     private final LancamentoServico servico;
+    private final LancamentoMapper mapper;
 
-    public LancamentoController(LancamentoServico servico){
+    public LancamentoController(LancamentoServico servico, LancamentoMapper mapper) {
         this.servico = servico;
+        this.mapper = mapper;
     }
 
-    @GetMapping 
-    public List<Lancamento> listar(){
-        return servico.listar();
+    @GetMapping
+    public List<LancamentoResponse> listar() {
+        return servico.listar().stream()
+                .map(mapper::toResponse)
+                .toList();
     }
-    
+
     @GetMapping("/{id}")
-    public Lancamento buscar(@PathVariable UUID id) {
-        return servico.buscar(id);
+    public LancamentoResponse buscar(@PathVariable UUID id) {
+        return mapper.toResponse(servico.buscar(id));
     }
 
     @PostMapping
-    public ResponseEntity<Lancamento> criar(@RequestBody Lancamento dados) {
-        Lancamento criado = servico.criar(dados);
+    public ResponseEntity<LancamentoResponse> criar(@RequestBody LancamentoRequest request) {
+        LancamentoResponse criado = mapper.toResponse(servico.criar(mapper.toDominio(request)));
         URI local = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(criado.id())
@@ -53,8 +57,8 @@ public class LancamentoController {
     }
 
     @PutMapping("/{id}")
-    public Lancamento atualizar(@PathVariable UUID id, @RequestBody Lancamento dados) {
-        return servico.atualizar(id, dados);
+    public LancamentoResponse atualizar(@PathVariable UUID id, @RequestBody LancamentoRequest request) {
+        return mapper.toResponse(servico.atualizar(id, mapper.toDominio(request)));
     }
 
     @DeleteMapping("/{id}")
@@ -67,8 +71,4 @@ public class LancamentoController {
     public ResponseEntity<Void> naoEncontrado() {
         return ResponseEntity.notFound().build();
     }
-
-
-
-
 }
