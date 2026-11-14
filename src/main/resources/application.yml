@@ -4,3 +4,6 @@ server:
 spring:
   application:
     name: fintrack
+  mvc:
+    problemdetails:
+      enabled: true

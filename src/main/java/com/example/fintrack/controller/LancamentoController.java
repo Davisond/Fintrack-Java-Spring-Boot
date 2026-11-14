@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +19,6 @@ import com.example.fintrack.Servico.LancamentoServico;
 import com.example.fintrack.dto.LancamentoRequest;
 import com.example.fintrack.dto.LancamentoResponse;
 import com.example.fintrack.mapper.LancamentoMapper;
-import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
 
 import jakarta.validation.Valid;
 
@@ -69,8 +67,5 @@ public class LancamentoController {
         return ResponseEntity.noContent().build();
     }
 
-    @ExceptionHandler(LancamentoNaoEncontradoException.class)
-    public ResponseEntity<Void> naoEncontrado() {
-        return ResponseEntity.notFound().build();
-    }
+
 }
