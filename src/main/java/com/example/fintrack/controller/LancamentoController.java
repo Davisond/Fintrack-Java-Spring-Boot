@@ -22,6 +22,8 @@ import com.example.fintrack.dto.LancamentoResponse;
 import com.example.fintrack.mapper.LancamentoMapper;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/lancamentos")
 public class LancamentoController {
@@ -47,7 +49,7 @@ public class LancamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<LancamentoResponse> criar(@RequestBody LancamentoRequest request) {
+    public ResponseEntity<LancamentoResponse> criar(@Valid @RequestBody LancamentoRequest request) {
         LancamentoResponse criado = mapper.toResponse(servico.criar(mapper.toDominio(request)));
         URI local = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -57,7 +59,7 @@ public class LancamentoController {
     }
 
     @PutMapping("/{id}")
-    public LancamentoResponse atualizar(@PathVariable UUID id, @RequestBody LancamentoRequest request) {
+    public LancamentoResponse atualizar(@PathVariable UUID id,@Valid @RequestBody LancamentoRequest request) {
         return mapper.toResponse(servico.atualizar(id, mapper.toDominio(request)));
     }
 
