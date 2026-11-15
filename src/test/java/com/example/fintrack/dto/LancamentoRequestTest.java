@@ -16,7 +16,17 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 
 public class LancamentoRequestTest {
+    
+    @Test
+    void rejeitaValorComTresCasasDecimais() {
+        LancamentoRequest request = new LancamentoRequest(
+                "Teste", new BigDecimal("10.999"), LocalDate.of(2026, 10, 1), TipoLancamento.DESPESA);
 
+        Set<ConstraintViolation<LancamentoRequest>> violacoes = validator.validate(request);
+
+        assertEquals(1, violacoes.size());
+        assertEquals("valor", violacoes.iterator().next().getPropertyPath().toString());
+    }
 
     private final Validator validator =
             Validation.buildDefaultValidatorFactory().getValidator();

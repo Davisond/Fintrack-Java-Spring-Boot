@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.example.fintrack.modelo.TipoLancamento;
+import com.example.fintrack.validacao.ValorMonetario;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ public record LancamentoRequest(
 
     @NotNull(message = "O valor é obrigatório")
     @Positive(message = "O valor deve ser maior que zero")
+    @ValorMonetario
     BigDecimal valor,
 
     @NotNull(message = "A data é obrigatória")
