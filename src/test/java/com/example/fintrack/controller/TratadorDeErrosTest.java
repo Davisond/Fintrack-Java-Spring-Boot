@@ -1,8 +1,11 @@
 package com.example.fintrack.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
+import org.springframework.http.ProblemDetail;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -46,4 +49,14 @@ class TratadorDeErrosTest {
                 .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
                 .andExpect(jsonPath("$.status").value(404));
     }
+
+        @Test
+    void erroInesperadoDevolve500SemVazarDetalhes() {
+        ProblemDetail problema = new TratadorDeErros()
+                .erroInesperado(new RuntimeException("senha-do-banco"));
+
+        assertEquals(500, problema.getStatus());
+        assertFalse(String.valueOf(problema.getDetail()).contains("senha-do-banco"));
+    }
+    
 }

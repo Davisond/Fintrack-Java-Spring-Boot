@@ -53,7 +53,17 @@ Um bean é um objeto criado e gerenciado pelo container do Spring através da no
 O spring cria instancias na própria inicialização e entrega os construtores, sem o Spring teria que ser criado manualmente. 
 singleton é o escopo padrão: Existe uma unica instanca de cada bean por aplicação, compartilhada por todas as requisições. por isso beans não devem guardar estado mutável específico por usuário. o @PostConstructor roda uma vez após a criação do bean e injeção de dependências.
 
-## Etapa 3:
+## Etapa 3: DTOs, validação e erros
+
+### Por que DTO
+O controller nao recebe nem devolve objeto de domínio. LancamentoRequest e LancamentoResponse formam o contrato da API e o dominio pode mudar sem quebrar
+* LancamentoRequest: Define exatamente o que o cliente pode mandar(impede injeção de dados, como tentar forçar um id por exemplo);
+* LancamentoResponse: Define o que a API devolve pro cliente, escondendo qualquer dado sensível (como logs por ex);
+* LancamentoMapper: Como são classes separadas, precisa passar os dados de um para o outro, isso é feito manualmente no mapper;
+
+### Validação
+Bean Validation no LancamentoRequest (`@NotBlank`, `@Positive`, `@NotNull`,
+`@PastOrPresent`, `@Size`) ativada com `@Valid` no controller. Também foi criado `@ValorMonetario`, é um validador que só aceita 2 casas decimais (por se tratar de dinheiro);
 
 ### Versionamento de API
 Todos os endpoints ficam com v1. a versão da URL possibilita o lançamento de uma api/v2 sem quebrar v1.
