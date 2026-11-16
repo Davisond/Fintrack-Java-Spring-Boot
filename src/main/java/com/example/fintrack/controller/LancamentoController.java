@@ -23,7 +23,7 @@ import com.example.fintrack.mapper.LancamentoMapper;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/lancamentos")
+@RequestMapping("/api/v1/lancamentos")
 public class LancamentoController {
 
     private final LancamentoServico servico;

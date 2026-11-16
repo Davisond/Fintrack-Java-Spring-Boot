@@ -1,19 +1,19 @@
 @host = http://localhost:8081
 
 ### Listar todos (200)
-GET {{host}}/api/lancamentos
+GET {{host}}/api/v1/lancamentos
 
 
 ### Buscar por id (troque pelo id de um item da lista)
-GET {{host}}/api/lancamentos/ebd80c07-118e-4c00-af69-f652bcd87a17
+GET {{host}}/api/v1/lancamentos/9218353b-b565-48dc-b483-86d3f63dd372
 
 
 ### Buscar id inexistente (404)
-GET {{host}}/api/lancamentos/00000000-0000-0000-0000-000000000000
+GET {{host}}/api/v1/lancamentos/00000000-0000-0000-0000-000000000000
 
 
 ### Criar (201 + header Location)
-POST {{host}}/api/lancamentos
+POST {{host}}/api/v1/lancamentos
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 
 ### Valor com 3 casas (400)
-POST {{host}}/api/lancamentos
+POST {{host}}/api/v1/lancamentos
 Content-Type: application/json
 
 {
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 
 ### Criar inválido, valor zero (400)
-POST {{host}}/api/lancamentos
+POST {{host}}/api/v1/lancamentos
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 
 ### Substituir (troque pelo id)
-PUT {{host}}/api/lancamentos/ebd80c07-118e-4c00-af69-f652bcd87a17
+PUT {{host}}/api/v1/lancamentos/ebd80c07-118e-4c00-af69-f652bcd87a17
 Content-Type: application/json
 
 {
@@ -61,4 +61,4 @@ Content-Type: application/json
 
 
 ### Remover (204)
-DELETE {{host}}/api/lancamentos/COLE-UM-ID-AQUI
+DELETE {{host}}/api/v1/lancamentos/9218353b-b565-48dc-b483-86d3f63dd372

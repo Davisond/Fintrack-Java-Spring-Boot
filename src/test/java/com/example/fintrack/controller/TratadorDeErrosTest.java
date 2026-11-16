@@ -30,7 +30,7 @@ class TratadorDeErrosTest {
 
     @Test
     void corpoVazioDevolve400ComTodosOsCamposInvalidos() throws Exception {
-        mockMvc.perform(post("/api/lancamentos")
+        mockMvc.perform(post("/api/v1/lancamentos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{}"))
                 .andExpect(status().isBadRequest())
@@ -41,7 +41,7 @@ class TratadorDeErrosTest {
 
     @Test
     void idInexistenteDevolve404NoFormatoProblemDetails() throws Exception {
-        mockMvc.perform(get("/api/lancamentos/00000000-0000-0000-0000-000000000000"))
+        mockMvc.perform(get("/api/v1/lancamentos/00000000-0000-0000-0000-000000000000"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
                 .andExpect(jsonPath("$.status").value(404));
