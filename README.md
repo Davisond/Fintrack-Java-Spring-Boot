@@ -57,3 +57,8 @@ singleton é o escopo padrão: Existe uma unica instanca de cada bean por aplica
 
 ### Versionamento de API
 Todos os endpoints ficam com v1. a versão da URL possibilita o lançamento de uma api/v2 sem quebrar v1.
+
+### Documentação da API
+Com springdoc-openapi a documentação é gerada. com a aplicação rodando:   
+  `./mvnw spring-boot:run`    
+ abra no navegador: http://localhost:8081/swagger-ui.html

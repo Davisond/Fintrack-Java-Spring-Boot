@@ -19,9 +19,10 @@ import com.example.fintrack.Servico.LancamentoServico;
 import com.example.fintrack.dto.LancamentoRequest;
 import com.example.fintrack.dto.LancamentoResponse;
 import com.example.fintrack.mapper.LancamentoMapper;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
+@Tag(name = "Lancamentos", description = "Cadastro, consulta e remoção de lançamentos")
 @RestController
 @RequestMapping("/api/v1/lancamentos")
 public class LancamentoController {
