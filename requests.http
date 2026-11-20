@@ -17,7 +17,7 @@ POST {{host}}/api/v1/lancamentos
 Content-Type: application/json
 
 {
-  "descricao": "Mercado",
+  "descricao": "Teste_banco_on",
   "valor": 150.90,
   "data": "2026-10-01",
   "tipo": "DESPESA"

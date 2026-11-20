@@ -72,3 +72,8 @@ Todos os endpoints ficam com v1. a versão da URL possibilita o lançamento de u
 Com springdoc-openapi a documentação é gerada. com a aplicação rodando:   
   `./mvnw spring-boot:run`    
  abra no navegador: http://localhost:8081/swagger-ui.html
+
+## Etapa 4: Persistência com JPA e PostgreeSQL
+
+### Entidade separada do domínio
+Lancamento é um record que valida no costrutor, a entidade JPA precisa ser uma classe com construtor vazio e campos mutáveis (diferente do record), então foi criado uma entidade separada LancamentoEntity com conversão no adaptador RepositorioJpa, que implementa a interface RepositorioLancamentos. O dominio e o serviço não conhecem o JPA, trocar a persistência não mexeu no serviço. O custo é o código de conversão entre entidade e domínio.
