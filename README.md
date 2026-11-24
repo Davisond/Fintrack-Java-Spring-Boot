@@ -77,3 +77,13 @@ Com springdoc-openapi a documentação é gerada. com a aplicação rodando:
 
 ### Entidade separada do domínio
 Lancamento é um record que valida no costrutor, a entidade JPA precisa ser uma classe com construtor vazio e campos mutáveis (diferente do record), então foi criado uma entidade separada LancamentoEntity com conversão no adaptador RepositorioJpa, que implementa a interface RepositorioLancamentos. O dominio e o serviço não conhecem o JPA, trocar a persistência não mexeu no serviço. O custo é o código de conversão entre entidade e domínio.
+
+### @Transactional 
+Interceptação pelo Proxy: O Spring envolve o bean com um proxy e usa o TransactionInterceptor para abrir a transação antes do método rodar e decidir entre commit ou rollback no final.
+
+### Queries observadas (show-sql)
+Com o show-sql ativo e o UUID gerado na aplicação antes de persistir, o log das requisições exibe:
+- **GET da lista:** 1 `select` na tabela `lancamento` (`select ... from lancamento`).
+- **POST (criação):** 1 `select` por `id` (`where id = ?`) seguido de 1 `insert into lancamento`. O `select` extra ocorre porque, como o `id` já vem preenchido pela aplicação em vez de ser gerado pelo banco, o Spring Data JPA/Hibernate não assume de cara que a entidade é nova e consulta o banco antes de gravar (merge).
+- **PUT:** `select` seguido de `update` no registro existente.
+- **DELETE:** `select` de verificação seguidos de `delete`.

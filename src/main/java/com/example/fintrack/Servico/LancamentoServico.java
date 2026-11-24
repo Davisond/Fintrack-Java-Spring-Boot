@@ -10,6 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.fintrack.modelo.Lancamento;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
@@ -17,6 +18,7 @@ import com.example.fintrack.modelo.TipoLancamento;
 import com.example.fintrack.repositorio.RepositorioLancamentos;
 
 @Service
+@Transactional(readOnly = true)
 public class LancamentoServico {
 
     private final RepositorioLancamentos repositorio;
@@ -30,15 +32,18 @@ public class LancamentoServico {
             .orElseThrow(() -> new LancamentoNaoEncontradoException(id));
     }
 
+    @Transactional
     public Lancamento salvar(Lancamento lancamento){
         return repositorio.salvar(lancamento);
     }
 
+    @Transactional
     public Lancamento criar(Lancamento dados){
         Lancamento novo = new Lancamento(UUID.randomUUID(),dados.descricao(), dados.valor(), dados.data(), dados.tipo());
         return repositorio.salvar(novo);
     }
 
+    @Transactional
     public Lancamento atualizar(UUID id, Lancamento dados){
         buscar(id);
         Lancamento atualizado = new Lancamento(id, dados.descricao(), dados.valor(), dados.data(), dados.tipo());
@@ -75,6 +80,7 @@ public class LancamentoServico {
             .toList();
     }
 
+    @Transactional 
     public void remover(UUID id){
         if(!repositorio.remover(id)){
             throw new LancamentoNaoEncontradoException(id);
