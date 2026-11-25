@@ -14,9 +14,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.example.fintrack.Servico.LancamentoServico;
 import com.example.fintrack.mapper.LancamentoMapper;
 import com.example.fintrack.repositorio.RepositorioEmMemoria;
+import com.example.fintrack.servico.LancamentoServico;
 
 class TratadorDeErrosTest {
 

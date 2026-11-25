@@ -87,3 +87,18 @@ Com o show-sql ativo e o UUID gerado na aplicação antes de persistir, o log da
 - **POST (criação):** 1 `select` por `id` (`where id = ?`) seguido de 1 `insert into lancamento`. O `select` extra ocorre porque, como o `id` já vem preenchido pela aplicação em vez de ser gerado pelo banco, o Spring Data JPA/Hibernate não assume de cara que a entidade é nova e consulta o banco antes de gravar (merge).
 - **PUT:** `select` seguido de `update` no registro existente.
 - **DELETE:** `select` de verificação seguidos de `delete`.
+
+### Como rodar
+1. Copie `.env.example` para `.env` e troque a senha.
+2. Suba o banco: `docker compose up -d` (espere ficar `healthy`).
+3. Rode a aplicação: `./mvnw spring-boot:run` (porta 8081).
+
+O PostgreSQL do contêiner fica exposto na porta **5433** do computador, para
+não colidir com um PostgreSQL instalado localmente (porta 5432).
+O schema é criado pelo Flyway (`src/main/resources/db/migration`) e o
+Hibernate só valida (`ddl-auto: validate`).
+`./mvnw clean verify` precisa do banco de pé até a Etapa 6 (Testcontainers).
+
+### Senha
+A senha do banco vem do `.env`, que está no `.gitignore`. O repositório
+guarda apenas o formato de exemplo `.env.example`.

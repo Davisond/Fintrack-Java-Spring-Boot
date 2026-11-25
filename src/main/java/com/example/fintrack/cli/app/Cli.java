@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-import com.example.fintrack.Servico.LancamentoServico;
 import com.example.fintrack.modelo.Lancamento;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
 import com.example.fintrack.modelo.Resultado;
 import com.example.fintrack.modelo.TipoLancamento;
 import com.example.fintrack.repositorio.RepositorioEmMemoria;
+import com.example.fintrack.servico.LancamentoServico;
 
 public class Cli {
 

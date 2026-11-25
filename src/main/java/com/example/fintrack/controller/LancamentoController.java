@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.fintrack.Servico.LancamentoServico;
 import com.example.fintrack.dto.LancamentoRequest;
 import com.example.fintrack.dto.LancamentoResponse;
 import com.example.fintrack.mapper.LancamentoMapper;
+import com.example.fintrack.servico.LancamentoServico;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 

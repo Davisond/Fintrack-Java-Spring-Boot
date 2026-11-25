@@ -6,9 +6,9 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.example.fintrack.Servico.LancamentoServico;
 import com.example.fintrack.modelo.Lancamento;
 import com.example.fintrack.modelo.TipoLancamento;
+import com.example.fintrack.servico.LancamentoServico;
 
 import jakarta.annotation.PostConstruct;
 

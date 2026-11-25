@@ -12,7 +12,7 @@ import com.example.fintrack.modelo.Conta;
 import com.example.fintrack.modelo.Lancamento;
 import com.example.fintrack.modelo.TipoLancamento;
 
-public class ContaTeste {
+public class ContaTest {
 
     @Test 
     void despesaDiminuiSaldo(){

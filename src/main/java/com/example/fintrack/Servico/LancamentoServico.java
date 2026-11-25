@@ -1,4 +1,4 @@
-package com.example.fintrack.Servico;
+package com.example.fintrack.servico;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;
