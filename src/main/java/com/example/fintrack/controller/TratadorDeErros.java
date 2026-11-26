@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.example.fintrack.categoria.CategoriaNaoEncontradaException;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
 
 @RestControllerAdvice
@@ -60,4 +61,15 @@ public class TratadorDeErros extends ResponseEntityExceptionHandler {
         problema.setTitle("Erro interno");
         return problema;
     }
+
+    @ExceptionHandler(CategoriaNaoEncontradaException.class)
+    public ProblemDetail categoriaNaoEncontrada(CategoriaNaoEncontradaException ex) {
+        ProblemDetail problema = ProblemDetail.forStatusAndDetail(
+                HttpStatus.NOT_FOUND, ex.getMessage());
+        problema.setTitle("Categoria não encontrada");
+        return problema;
+    }
+
+
+
 }

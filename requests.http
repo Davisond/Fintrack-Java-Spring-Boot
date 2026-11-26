@@ -5,7 +5,7 @@ GET {{host}}/api/v1/lancamentos
 
 
 ### Buscar por id (troque pelo id de um item da lista)
-GET {{host}}/api/v1/lancamentos/9218353b-b565-48dc-b483-86d3f63dd372
+GET {{host}}/api/v1/lancamentos/b8eff261-1405-4506-932c-f56fa1f119f9
 
 
 ### Buscar id inexistente (404)
@@ -59,6 +59,52 @@ Content-Type: application/json
   "tipo": "DESPESA"
 }
 
-
 ### Remover (204)
 DELETE {{host}}/api/v1/lancamentos/9218353b-b565-48dc-b483-86d3f63dd372
+
+# ------------------------------------ C A T E G O R I A --------------------------------------------------
+
+
+### Criar categoria (201 + Location)
+POST {{host}}/api/v1/categorias
+Content-Type: application/json
+
+{
+  "nome": "Mercado",
+  "cor": "#FF8800"
+}
+
+### Listar categorias (200)
+GET {{host}}/api/v1/categorias
+
+
+### Buscar (troque pelo id)
+GET {{host}}/api/v1/categorias/6096e1c0-c63c-4d1b-ac80-5888dd714b45
+
+
+### Cor inválida (400, com o campo cor na lista erros)
+POST {{host}}/api/v1/categorias
+Content-Type: application/json
+
+{
+  "nome": "Teste",
+  "cor": "vermelho"
+}
+
+
+### Substituir (troque pelo id)
+PUT {{host}}/api/v1/categorias/6096e1c0-c63c-4d1b-ac80-5888dd714b45
+Content-Type: application/json
+
+{
+  "nome": "Supermercado",
+  "cor": "#00AA55"
+}
+
+
+### Remover (204)
+DELETE {{host}}/api/v1/categorias/6096e1c0-c63c-4d1b-ac80-5888dd714b45
+
+
+### Categoria inexistente (404 no formato padrão)
+GET {{host}}/api/v1/categorias/00000000-0000-0000-0000-000000000000
