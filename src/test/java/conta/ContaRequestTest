@@ -1,0 +1,44 @@
+package com.example.fintrack.conta;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.math.BigDecimal;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+
+class ContaRequestTest {
+
+    private final Validator validator =
+            Validation.buildDefaultValidatorFactory().getValidator();
+
+    @Test
+    void requestValidoNaoTemViolacoes() {
+        assertTrue(validator.validate(new ContaRequest("Corrente", new BigDecimal("1000.00"))).isEmpty());
+    }
+
+    @Test
+    void aceitaSaldoInicialNegativoOuZero() {
+        assertTrue(validator.validate(new ContaRequest("Cartão pré-pago", BigDecimal.ZERO)).isEmpty());
+        assertTrue(validator.validate(new ContaRequest("Cheque especial", new BigDecimal("-250.00"))).isEmpty());
+    }
+
+    @Test
+    void requestVazioViolaOsDoisCampos() {
+        Set<String> campos = validator.validate(new ContaRequest(null, null)).stream()
+                .map(v -> v.getPropertyPath().toString())
+                .collect(Collectors.toSet());
+
+        assertEquals(Set.of("nome", "saldoInicial"), campos);
+    }
+
+    @Test
+    void rejeitaSaldoComTresCasasDecimais() {
+        assertEquals(1, validator.validate(new ContaRequest("Corrente", new BigDecimal("10.999"))).size());
+    }
+}

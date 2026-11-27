@@ -1,0 +1,20 @@
+package com.example.fintrack.conta;
+
+import java.math.BigDecimal;
+
+import com.example.fintrack.validacao.ValorMonetario;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+public record ContaRequest(
+
+        @NotBlank(message = "O nome é obrigatório")
+        @Size(max = 60, message = "O nome deve ter no máximo 60 caracteres")
+        String nome,
+
+        @NotNull(message = "O saldo inicial é obrigatório")
+        @ValorMonetario
+        BigDecimal saldoInicial) {
+}

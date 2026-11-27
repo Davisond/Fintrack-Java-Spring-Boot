@@ -108,3 +108,29 @@ DELETE {{host}}/api/v1/categorias/6096e1c0-c63c-4d1b-ac80-5888dd714b45
 
 ### Categoria inexistente (404 no formato padrão)
 GET {{host}}/api/v1/categorias/00000000-0000-0000-0000-000000000000
+
+# ------------------------------------ C O N T A --------------------------------------------------
+
+### Criar conta (201 + Location)
+POST {{host}}/api/v1/contas
+Content-Type: application/json
+
+{
+  "nome": "Conta corrente",
+  "saldoInicial": 1000.00
+}
+
+### Listar contas (200)
+GET {{host}}/api/v1/contas
+
+### Saldo com 3 casas (400)
+POST {{host}}/api/v1/contas
+Content-Type: application/json
+
+{
+  "nome": "Teste",
+  "saldoInicial": 10.999
+}
+
+### Conta inexistente (404 no formato padrão)
+GET {{host}}/api/v1/contas/00000000-0000-0000-0000-000000000000

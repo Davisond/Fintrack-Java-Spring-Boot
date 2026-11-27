@@ -17,6 +17,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.example.fintrack.categoria.CategoriaNaoEncontradaException;
+import com.example.fintrack.conta.ContaNaoEncontradaException;
 import com.example.fintrack.modelo.LancamentoNaoEncontradoException;
 
 @RestControllerAdvice
@@ -70,6 +71,12 @@ public class TratadorDeErros extends ResponseEntityExceptionHandler {
         return problema;
     }
 
-
+    @ExceptionHandler(ContaNaoEncontradaException.class)
+    public ProblemDetail contaNaoEncontrada(ContaNaoEncontradaException ex) {
+        ProblemDetail problema = ProblemDetail.forStatusAndDetail(
+                HttpStatus.NOT_FOUND, ex.getMessage());
+        problema.setTitle("Conta não encontrada");
+        return problema;
+    }
 
 }
